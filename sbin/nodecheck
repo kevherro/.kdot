@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Check if nvm is installed.
+if ! command -v nvm &> /dev/null; then
+    echo "nvm not found. Install it and try again."
+    exit 1
+fi
+
+# Get the latest version of node.
+latest_version=$(nvm ls-remote --lts | tail -1 | awk '{print $1}')
+
+# Check if the latest version is already installed.
+if ! nvm ls | grep -q "$latest_version"; then
+    echo "installing node version $latest_version..."
+    nvm install "$latest_version"
+fi
+
+# Use the latest version of node.
+nvm use "$latest_version"

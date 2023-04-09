@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+export DOTFILES="/Users/kevinherro/.kdot/"
+export STOW_FOLDERS="nvim,zsh"
+
+pushd $DOTFILES
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+    stow -D -v $folder
+done
+popd
+
+# Un-stow sbin
+stow -D -v -t /usr/local/sbin sbin/
