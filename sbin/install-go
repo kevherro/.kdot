@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Define the version of Go to install.
+VERSION=$1
+
+# Install the specified version of Go.
+go install golang.org/dl/go${VERSION}@latest
+
+# Download the specified version of Go.
+go${VERSION} download
+
+# Verify the installation.
+if [[ -x "$(command -v go${VERSION})" ]]; then
+    echo "Go ${VERSION} has been installed successfully."
+else
+    err "There was an error installing Go ${VERSION}."
+fi

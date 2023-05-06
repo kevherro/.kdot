@@ -1,2 +1,7 @@
 .DS_Store
 zsh/.secrets
+
+nvim/.config/dlv/
+nvim/.config/iterm2/
+nvim/.config/jgit/
+nvim/.config/nvm/

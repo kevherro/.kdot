@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 # Check if nvm is installed.
-if ! command -v nvm &> /dev/null; then
-    echo "nvm not found. Install it and try again."
-    exit 1
+if [[ ! -x "$(command -v nvm)" ]]; then
+    err "nvm not found. Install it and try again."
 fi
 
 # Get the latest version of node.
