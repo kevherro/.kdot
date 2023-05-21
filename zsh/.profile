@@ -1,6 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
 export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/nvim-macos/bin
 
 export NVM_DIR="$HOME/.config/nvm"
 loadNvm() {
