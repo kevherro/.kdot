@@ -8,6 +8,9 @@ lsp.ensure_installed({
     'rust_analyzer',
 })
 
+-- Fix undefined global variable 'vim'
+lsp.nvim_workspace()
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -15,6 +18,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ["<C-Space>"] = cmp.mapping.complete(),
+})
+
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
+
+lsp.setup_nvim_cmp({
+    mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -25,10 +35,6 @@ lsp.set_preferences({
         hint = 'H',
         info = 'I'
     }
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -46,13 +52,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
--- Format on save
-lsp.format_on_save({
-    servers = {
-        ['lua_ls'] = { 'lua' },
-        ['gopls'] = { 'go' },
-        ['rust_analyzer'] = { 'rust' },
-    }
-})
-
 lsp.setup()
+
+vim.diagnostic.config({
+    virtual_text = true
+})

@@ -1,11 +1,15 @@
 require("kevinherro.set")
-require("kevinherro.packer")
+require("kevinherro.plugins")
 
 local augroup = vim.api.nvim_create_augroup
 KevinHerroGroup = augroup('KevinHerro', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
+
+function R(name)
+    require("plenary.reload").reload_module(name)
+end
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -18,10 +22,10 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = KevinHerroGroup,
     pattern = "*",
-    command = "%s/\\s\\+$//e",
+    command = [[%s/\s\+$//e]],
 })
 
 vim.g.netrw_browse_split = 0
