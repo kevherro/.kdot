@@ -1,2 +1,5 @@
 .DS_Store
 zsh/.secrets
+
+/nvim/.config/
+!/nvim/.config/nvim
