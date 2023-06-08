@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#
+# gg installs and downloads go via the `go install` command.
+
+set -e
+set -x
+
+#######################################
+# Print out error messages along with
+# other status information.
+#######################################
+function err() {
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
+}
+
+#######################################
+# Install a specific version of Go.
+# Arguments:
+#   The version of Go to install.
+#######################################
+function install() {
+  go install golang.org/dl/go"${1}"@latest
+}
+
+#######################################
+# Download a specific version of Go.
+# Arguments:
+#   The version of Go to download.
+#######################################
+function download() {
+  # Make sure that the specific version of Go was first installed.
+  if ! command -v go"${1}" >/dev/null 2>&1; then
+    return 1
+  fi
+  read -r -p "go${VERSION} installed. Do you wish to download it? (y/n): " answer
+  if [[ "$answer" =~ ^[Yy]$ ]]; then
+    go"${1}" download
+  fi
+}
+
+VERSION="${1}"
+
+if [[ -z "$VERSION" ]]; then
+  echo "usage: gg [version]"
+  exit 1
+fi
+
+if ! install "$VERSION"; then
+  err "Unable to install Go version ${VERSION}"
+  exit 1
+fi
+
+if ! download "$VERSION"; then
+  err "Unable to download Go version ${VERSION}"
+  exit 1
+fi
