@@ -5,3 +5,4 @@ alias lh="ls -lah"
 alias ip="curl ifconfig.me"
 
 # remote
+alias kevherro="ssh -i $HOME/.ssh/kevherro.pem ubuntu@54.215.53.69"
