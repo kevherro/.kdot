@@ -1,15 +1,22 @@
 #!/usr/bin/env zsh
 
+# Set dotfiles and stow folders directories
 export DOTFILES="/Users/kevinherro/.kdot/"
-export STOW_FOLDERS="nvim,zsh"
+export STOW_FOLDERS=( ${(s:,:)STOW_FOLDERS} ) # convert comma separated string to array
 
+# Navigate to dotfiles directory
 pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+
+# Un-stow folders and re-stow them for fresh symlinks
+for folder in "${STOW_FOLDERS[@]}"
 do
-    stow -D -v $folder
-    stow -v $folder
+  stow -D -v $folder
+  stow -v $folder
 done
+
+# Return to original directory
 popd
 
-# Stow sbin
+# Un-stow and re-stow sbin for fresh symlink in /usr/local/sbin
+stow -D -v -t /usr/local/sbin sbin/
 stow -v -t /usr/local/sbin sbin/
