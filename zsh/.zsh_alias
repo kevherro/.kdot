@@ -2,12 +2,6 @@
 alias vim="nvim"
 alias l="ls -lh"
 alias lh="ls -lah"
-
-# go binaries
-alias dlv="$HOME/go/bin/dlv"
-
-# navigation
-alias godev="cd $HOME/goroot/"
+alias ip="curl ifconfig.me"
 
 # remote
-alias kevin="ssh -i $HOME/.ssh/kevin.pem ubuntu@54.215.53.69"
