@@ -4,8 +4,8 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/local/nvim-macos/bin
 
 # go
-export PATH=$PATH:$HOME/go/bin
-# export GOROOT=$HOME/goroot
+export GOROOT=$HOME/sdk/go1.20.6
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # rust
 ,rust() {
