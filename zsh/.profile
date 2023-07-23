@@ -11,3 +11,8 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 ,rust() {
   . "$HOME/.cargo/env"
 }
+
+# brew
+,brew() {
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+}
