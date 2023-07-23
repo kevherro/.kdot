@@ -6,3 +6,6 @@ alias ip="curl ifconfig.me"
 
 # remote
 alias kevherro="ssh -i $HOME/.ssh/kevherro.pem ubuntu@54.215.53.69"
+
+# nav
+alias a1="cd ~/personal/algo100"
