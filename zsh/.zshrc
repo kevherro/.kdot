@@ -29,4 +29,3 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/.profile
 source $HOME/.zsh_alias
-source $HOME/.secrets
