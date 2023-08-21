@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# start starts my kevian EC2 instance.
+
+set -e
+set -x
+
+INSTANCE_ID="i-07154d7b54bb59fa7"
+aws ec2 start-instances --instance-ids $INSTANCE_ID
