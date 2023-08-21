@@ -1,9 +1,23 @@
 #!/usr/bin/env bash
 #
-# start starts my kevian EC2 instance.
+# stop stops the EC2 instance named INSTANCE_NAME.
 
 set -e
 set -x
 
-INSTANCE_ID="i-07154d7b54bb59fa7"
+INSTANCE_NAME=$1
+INSTANCE_ID=""
+
+if [[ $INSTANCE_NAME == "kevian" ]]; then
+  INSTANCE_ID="i-07154d7b54bb59fa7"
+else
+  echo "Invalid instance name provided."
+  exit 1
+fi
+
+if [[ -z $INSTANCE_ID ]]; then
+  echo "No instance ID found for the provided instance name."
+  exit 1
+fi
+
 aws ec2 stop-instances --instance-ids $INSTANCE_ID
