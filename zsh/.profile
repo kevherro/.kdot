@@ -3,6 +3,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/local/nvim-macos/bin
 
+export INSTANCE_ID_KEVIAN="i-0ae00d4b6971d2418"
+
 # rust
 ,rust() {
   . "$HOME/.cargo/env"

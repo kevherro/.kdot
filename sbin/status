@@ -5,19 +5,8 @@
 set -e
 set -x
 
-INSTANCE_NAME=$1
-INSTANCE_ID=""
+aws ec2 describe-instances \
+    --instance-ids $INSTANCE_ID_KEVIAN \
+    --query 'Reservations[].Instances[].State.Name' \
+    --output text
 
-if [[ $INSTANCE_NAME == "kevian" ]]; then
-  INSTANCE_ID="i-07154d7b54bb59fa7"
-else
-  echo "Invalid instance name provided."
-  exit 1
-fi
-
-if [[ -z $INSTANCE_ID ]]; then
-  echo "No instance ID found for the provided instance name."
-  exit 1
-fi
-
-aws ec2 describe-instance-status --instance-id $INSTANCE_ID
